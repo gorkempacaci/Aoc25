@@ -28,9 +28,10 @@ subStack([], RunningResult, _, RunningResult, []).
 subStack([E|Stack], RunningResult, RunningOperator, SubResult, RemStack) :-
     number(E)
     -> 
-        ( RunningOperator = '+' -> MidResult is RunningResult + E, subStack(Stack, MidResult, RunningOperator, SubResult, RemStack)
-        ; RunningOperator = '*' -> MidResult is RunningResult * E, subStack(Stack, MidResult, RunningOperator, SubResult, RemStack)
-        )
+        ( RunningOperator = '+' -> MidResult is RunningResult + E
+        ; RunningOperator = '*' -> MidResult is RunningResult * E
+        ),
+        subStack(Stack, MidResult, RunningOperator, SubResult, RemStack)
     ;
         RunningResult=SubResult, RemStack=[E|Stack].
 
