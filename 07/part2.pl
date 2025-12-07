@@ -22,17 +22,12 @@ countReflects([S|SplitterIndices], LightCountsIn, LightCountsOut) :-
     ;
             countReflects(SplitterIndices, LightCountsIn, LightCountsOut).
 
-foldLights([], L, L).
-foldLights([SIs|SplitterIndicesList], LightCountsIn, LightCountsOut) :-
-    countReflects(SIs, LightCountsIn, LightCountsThisStep),
-    foldLights(SplitterIndicesList, LightCountsThisStep, LightCountsOut).
-
 main :-
     phrase_from_file(file([SLine|SplitterLines]), 'input.txt'),
     replace_all('S', 1, SLine, LightCounts_),
     replace_all('.', 0, LightCounts_, LightCounts),
     maplist([L]>>findall(Index, nth0(Index, L, '^')), SplitterLines, SplitterIndicesList),
-    foldLights(SplitterIndicesList, LightCounts, LightCountsEnd),
+    foldl(countReflects, SplitterIndicesList, LightCounts, LightCountsEnd),
     sum_list(LightCountsEnd, Part2),
     write(part2:Part2), nl.
 
