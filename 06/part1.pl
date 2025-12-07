@@ -1,4 +1,4 @@
-% runs on SWI-Prolog / Gorkem Pacaci AoC2025 Day 6 part 2
+% runs on SWI-Prolog / Gorkem Pacaci AoC2025 Day 6 part 1
 :- use_module(library(dcg/basics)).
 :- use_module(library(clpfd)).
 
