@@ -18,7 +18,7 @@ main :-
     countPaths("you", "out", [], Count1),
     countPaths("svr", "out", ["dac", "fft"], Count2),
     write(part1:Count1), nl,
-    write(part1:Count2), nl,
+    write(part2:Count2), nl,
     write(done), nl.
 
 :- table countPaths/4.
